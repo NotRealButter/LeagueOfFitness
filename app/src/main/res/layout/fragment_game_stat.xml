@@ -1,10 +1,41 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.notrealbutter.leaguefitness.leagueoffitness.Fragments.GameStatFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <TextView
+        android:layout_width="215dp"
+        android:layout_height="59dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Summoner Name"
+        android:id="@+id/summonerNameBoxGS"
+        android:layout_gravity="left|top"
+        android:layout_x="5dp"
+        android:layout_y="8dp" />
 
-</FrameLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="SummonerID"
+        android:id="@+id/summonerIDBoxGS"
+        android:layout_x="7dp"
+        android:layout_y="47dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="LVL"
+        android:id="@+id/summonerLevelBoxGS"
+        android:layout_x="260dp"
+        android:layout_y="4dp" />
+
+    <ListView
+        android:layout_width="328dp"
+        android:layout_height="385dp"
+        android:id="@+id/recentMatchListBoxGS"
+        android:layout_x="5dp"
+        android:layout_y="95dp"
+        android:choiceMode="singleChoice" />
+</AbsoluteLayout>

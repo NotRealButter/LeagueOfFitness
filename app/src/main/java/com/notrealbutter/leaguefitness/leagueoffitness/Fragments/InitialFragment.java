@@ -1,9 +1,8 @@
 package com.notrealbutter.leaguefitness.leagueoffitness.Fragments;
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,12 +56,6 @@ public class InitialFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-
-    }
-
-    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
@@ -70,7 +63,7 @@ public class InitialFragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(Uri uri);
     }
 
 }

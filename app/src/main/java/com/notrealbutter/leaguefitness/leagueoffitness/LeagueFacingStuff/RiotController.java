@@ -7,7 +7,7 @@ import com.robrua.orianna.type.exception.APIException;
 
 public class RiotController
 {
-    SummonerAccount summonerAccount;
+    public SummonerAccount summonerAccount;
 
     public void RiotController()
     {

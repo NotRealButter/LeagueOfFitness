@@ -1,18 +1,8 @@
 package com.notrealbutter.leaguefitness.leagueoffitness.LeagueFacingStuff;
 
-import android.widget.Toast;
-
-import com.robrua.orianna.api.core.AsyncRiotAPI;
-import com.robrua.orianna.type.api.Action;
 import com.robrua.orianna.type.core.matchlist.MatchReference;
-import com.robrua.orianna.type.core.summoner.Summoner;
-import com.robrua.orianna.type.exception.APIException;
 
 import java.util.List;
-
-/**
- * Created by hites on 9/28/2015.
- */
 public class SummonerAccount {
     private String nameCollected;
     private int summonerIDCollected;

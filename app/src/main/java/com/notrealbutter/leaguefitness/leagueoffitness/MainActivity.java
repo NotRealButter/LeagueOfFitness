@@ -6,18 +6,18 @@ import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -27,6 +27,7 @@ import com.notrealbutter.leaguefitness.leagueoffitness.Fragments.ContactUsFragme
 import com.notrealbutter.leaguefitness.leagueoffitness.Fragments.ExerciseFragement;
 import com.notrealbutter.leaguefitness.leagueoffitness.Fragments.GameStatFragment;
 import com.notrealbutter.leaguefitness.leagueoffitness.Fragments.InitialFragment;
+import com.notrealbutter.leaguefitness.leagueoffitness.LeagueFacingStuff.RiotController;
 import com.notrealbutter.leaguefitness.leagueoffitness.LeagueFacingStuff.SummonerAccount;
 import com.robrua.orianna.api.core.AsyncRiotAPI;
 import com.robrua.orianna.type.api.Action;
@@ -37,6 +38,7 @@ import com.robrua.orianna.type.exception.APIException;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,InitialFragment.OnFragmentInteractionListener {
 
+    RiotController riotController;
     SummonerAccount summonerAccount;
 
     String enteredName;
@@ -237,11 +239,14 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        riotController = new RiotController();
+        summonerAccount = new SummonerAccount();
+
         initialFragment = InitialFragment.newInstance("param1","param2");
         aboutFragment = AboutFragment.newInstance("param1","param2");
-        contactUsFragment = ContactUsFragment.newInstance("param1","param2");;
-        exerciseFragement = ExerciseFragement.newInstance("param1","param2");;
-        gameStatFragment = GameStatFragment.newInstance("param1","param2");;
+        contactUsFragment = ContactUsFragment.newInstance("param1","param2");
+        exerciseFragement = ExerciseFragement.newInstance("param1","param2");
+        gameStatFragment = GameStatFragment.newInstance("param1","param2");
 
         fm = getFragmentManager();
 
@@ -313,6 +318,5 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        summonerAccount = new SummonerAccount();
     }
 }
