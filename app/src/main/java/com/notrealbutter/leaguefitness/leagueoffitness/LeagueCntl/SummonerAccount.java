@@ -8,6 +8,12 @@ public class SummonerAccount {
     private int summonerLevelCollected;
     public MatchList recentGamesCollected = null;
 
+    private int killCount = 0;
+    private int deathCount = 0;
+    private int assistCount = 0;
+    private int creepScore = 0;
+    private int gameDuration = 0;
+
     public SummonerAccount()
     {
         nameCollected = "none";
@@ -52,7 +58,45 @@ public class SummonerAccount {
         this.summonerLevelCollected = summonerLevelCollected;
     }
 
+    public int getKillCount() {
+        return killCount;
+    }
 
+    public void setKillCount(int killCount) {
+        this.killCount = killCount;
+    }
+
+    public int getDeathCount() {
+        return deathCount;
+    }
+
+    public void setDeathCount(int deathCount) {
+        this.deathCount = deathCount;
+    }
+
+    public int getAssistCount() {
+        return assistCount;
+    }
+
+    public void setAssistCount(int assistCount) {
+        this.assistCount = assistCount;
+    }
+
+    public int getCreepScore() {
+        return creepScore;
+    }
+
+    public void setCreepScore(int creepScore) {
+        this.creepScore = creepScore;
+    }
+
+    public int getGameDuration() {
+        return gameDuration;
+    }
+
+    public void setGameDuration(int gameDuration) {
+        this.gameDuration = gameDuration;
+    }
 }
 
 

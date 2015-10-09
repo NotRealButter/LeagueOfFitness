@@ -4,7 +4,86 @@
     tools:context="com.notrealbutter.leaguefitness.leagueoffitness.Fragments.ExerciseFragement">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nav_header_height"
+        android:background="@drawable/internal_top_box"
+        android:padding="3dp"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="centerCrop"
+        android:cropToPadding="true"
+>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="424dp"
+                android:layout_height="161dp"
+                android:id="@+id/imageView4"
+                android:layout_alignTop="@+id/textView4"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:src="@drawable/leesin"
+                android:scaleType="fitStart"
+                android:shadowColor="#000000"
+                android:shadowRadius="5"
+                android:shadowDx="10"
+                android:layout_toStartOf="@+id/textView4"
+                android:layout_alignParentBottom="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:text="@string/exerciseLogo"
+                android:id="@+id/textView4"
+                android:textSize="45sp"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:shadowColor="#000000"
+                android:shadowRadius="5"
+                android:shadowDx="10"
+                android:layout_gravity="right|center_vertical" />
+
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="200dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/exerciseInitiator"
+            android:id="@+id/exerciseInitiation"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="107dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/textView5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/textView6" />
+
+    </LinearLayout>
 
 </FrameLayout>

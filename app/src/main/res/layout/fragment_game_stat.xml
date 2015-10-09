@@ -1,4 +1,4 @@
-<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:tag="gameStatFrag"
@@ -6,7 +6,7 @@
     tools:context="com.notrealbutter.leaguefitness.leagueoffitness.Fragments.GameStatFragment">
 
     <TextView
-        android:layout_width="215dp"
+        android:layout_width="312dp"
         android:layout_height="59dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Summoner Name"
@@ -21,8 +21,11 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="SummonerID"
         android:id="@+id/summonerIDBoxGS"
-        android:layout_x="7dp"
-        android:layout_y="47dp" />
+        android:layout_x="2dp"
+        android:layout_y="76dp"
+        android:layout_below="@+id/summonerNameBoxGS"
+        android:layout_toRightOf="@+id/scrollView"
+        android:layout_toEndOf="@+id/scrollView" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,8 +33,11 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="LVL"
         android:id="@+id/summonerLevelBoxGS"
-        android:layout_x="260dp"
-        android:layout_y="4dp" />
+        android:layout_x="327dp"
+        android:layout_y="4dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/scrollView" />
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -48,5 +54,8 @@
         android:id="@+id/recentMatchListBoxGS"
         android:layout_x="6dp"
         android:layout_y="109dp"
-        android:choiceMode="multipleChoiceModal" />
-</AbsoluteLayout>
+        android:choiceMode="multipleChoiceModal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>

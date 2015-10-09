@@ -51,6 +51,7 @@ public class GameStatFragment extends Fragment {
          summonerLevelGS = (TextView) view.findViewById(R.id.summonerLevelBoxGS);
          summonerIDGS = (TextView) view.findViewById(R.id.summonerIDBoxGS);
 
+        updateView();
         return view;
     }
 
@@ -75,4 +76,17 @@ public class GameStatFragment extends Fragment {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
+
+    public void setSummonerAccount(SummonerAccount acct){
+        summonerAccount = acct;
+    }
+
+    public void updateView(){
+        summonerNameGS.setText("Summoner Name: " +summonerAccount.getNameCollected());
+        summonerLevelGS.setText("Level: " +summonerAccount.getSummonerLevelCollected());
+        summonerIDGS.setText("ID: " + summonerAccount.getSummonerIDCollected());
+
+    }
+
+
 }

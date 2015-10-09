@@ -15,7 +15,15 @@ public class ExerciseStat {
     private int burpees;
     private int runDuration;
 
-    public ExerciseStat(){
+    public ExerciseStat(int kc,int dc, int ac, int cs, int gd){
+        killCount = kc;
+        deathCount = dc;
+        assistCount = ac;
+        creepScore = cs;
+        gameDuration = gd;
+    }
+
+    public void setUpExercise(){
         setPushUps(getKillCount() * 5 + getAssistCount());
         setBurpees(getDeathCount() * 5);
         setCrunches(getCreepScore() /10);
@@ -93,5 +101,13 @@ public class ExerciseStat {
 
     public void setRunDuration(int runDuration) {
         this.runDuration = runDuration;
+    }
+    public void initialize() {
+
+
+        setPushUps(getKillCount() * 5 + getAssistCount());
+        setBurpees(getDeathCount() * 5);
+        setCrunches(getCreepScore() / 10);
+        setRunDuration(getGameDuration());
     }
 }

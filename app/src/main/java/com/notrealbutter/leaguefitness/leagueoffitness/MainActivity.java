@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.notrealbutter.leaguefitness.leagueoffitness.ExerciseCntl.ExerciseStat;
 import com.notrealbutter.leaguefitness.leagueoffitness.Fragments.AboutFragment;
 import com.notrealbutter.leaguefitness.leagueoffitness.Fragments.ContactUsFragment;
 import com.notrealbutter.leaguefitness.leagueoffitness.Fragments.ExerciseFragement;
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity
     ExerciseFragement exerciseFragement;
     GameStatFragment gameStatFragment;
     FloatingActionButton button;
+    ExerciseStat exerciseStat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -206,9 +208,15 @@ public class MainActivity extends AppCompatActivity
             }
         }, name);
 
+        temporaryPresentationPrep();
+        gameStatFragment.setSummonerAccount(summonerAccount);
+        exerciseFragement.setSummonerAccount(summonerAccount);
+        exerciseFragement.setExerciseStat(exerciseStat);
+        gameStatFragment.updateView();
+        exerciseFragement.updateView();
+
+        System.out.println("Number of Crunches:" + exerciseStat.getCrunches());
         button.hide();
-//        ((GameStatFragment)getFragmentManager().findFragmentById(R.id.gameStatFrag)).changeText(summonerAccount.getNameCollected());
-//    gameStatFragment.changeText(summonerAccount.getNameCollected());
     }
 
     public void initMenus(Bundle savedInstanceState)
@@ -219,12 +227,15 @@ public class MainActivity extends AppCompatActivity
 
         riotController = new RiotController();
         summonerAccount = new SummonerAccount();
+        exerciseStat = new ExerciseStat(summonerAccount.getKillCount(),summonerAccount.getDeathCount(),summonerAccount.getAssistCount(),summonerAccount.getCreepScore(),summonerAccount.getGameDuration());
 
         initialFragment = InitialFragment.newInstance("param1","param2");
         aboutFragment = AboutFragment.newInstance("param1","param2");
         contactUsFragment = ContactUsFragment.newInstance("param1", "param2");
         exerciseFragement = ExerciseFragement.newInstance("param1", "param2");
         gameStatFragment = GameStatFragment.newInstance("param1","param2");
+
+        gameStatFragment.setSummonerAccount(summonerAccount);
 
         fm = getFragmentManager();
 
@@ -298,5 +309,13 @@ public class MainActivity extends AppCompatActivity
                 alertDialog.show();
             }
         });
+    }
+    public void temporaryPresentationPrep()
+    {
+        summonerAccount.setKillCount((int)(Math.random()*7));
+        summonerAccount.setDeathCount((int) (Math.random() * 9));
+        summonerAccount.setAssistCount((int) (Math.random() * 19));
+        summonerAccount.setCreepScore((int) (Math.random() * 275));
+        summonerAccount.setGameDuration((int)(Math.random()*40));
     }
 }
