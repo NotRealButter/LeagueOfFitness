@@ -27,13 +27,19 @@ import com.notrealbutter.leaguefitness.leagueoffitness.Fragments.ContactUsFragme
 import com.notrealbutter.leaguefitness.leagueoffitness.Fragments.ExerciseFragement;
 import com.notrealbutter.leaguefitness.leagueoffitness.Fragments.GameStatFragment;
 import com.notrealbutter.leaguefitness.leagueoffitness.Fragments.InitialFragment;
-import com.notrealbutter.leaguefitness.leagueoffitness.LeagueFacingStuff.RiotController;
-import com.notrealbutter.leaguefitness.leagueoffitness.LeagueFacingStuff.SummonerAccount;
+import com.notrealbutter.leaguefitness.leagueoffitness.LeagueCntl.RiotController;
+import com.notrealbutter.leaguefitness.leagueoffitness.LeagueCntl.SummonerAccount;
 import com.robrua.orianna.api.core.AsyncRiotAPI;
+import com.robrua.orianna.api.dto.BaseRiotAPI;
 import com.robrua.orianna.type.api.Action;
 import com.robrua.orianna.type.core.common.Region;
+import com.robrua.orianna.type.core.matchlist.MatchReference;
 import com.robrua.orianna.type.core.summoner.Summoner;
 import com.robrua.orianna.type.exception.APIException;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,InitialFragment.OnFragmentInteractionListener {
@@ -44,6 +50,8 @@ public class MainActivity extends AppCompatActivity
     String enteredName;
     private ListView drawerList;
     private String[] navMenuTitles;
+
+    public List<MatchReference> localMatchList;
 
     DrawerLayout drawerLayout;
     FragmentManager fm;
@@ -101,15 +109,13 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
+    public void onFragmentInteraction(Uri uri) { }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        Fragment fragment = null;
+        Fragment fragment = initialFragment;
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
@@ -150,14 +156,41 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void leagueInit(String name)
-    {
+    public void leagueInit(String name) {
         AsyncRiotAPI.getSummonerByName(new Action<Summoner>() {
             @Override
             public void perform(final Summoner summoner) {
+                Date now = new Date(System.currentTimeMillis());
                 summonerAccount.setNameCollected(summoner.getName());
                 summonerAccount.setSummonerIDCollected((int) summoner.getID());
                 summonerAccount.setSummonerLevelCollected((int) summoner.getLevel());
+
+                System.out.println(summoner.getName() + " " + summoner.getID() + " " + summoner.getLevel());
+
+//                Action action = new Action<List<MatchReference>>() {
+//                    @Override
+//
+//                    public void perform(List<MatchReference> responseData) {
+//                        runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                Toast toast = Toast.makeText(getApplicationContext(), "Matches Retrieved", Toast.LENGTH_LONG);
+//                                toast.show();
+//                            }
+//                        });
+//                    }
+//
+//                    @Override
+//                    public void handle(APIException exception) {
+//                        System.out.println("Couldn't Get Matchlist");
+//                    }
+//
+//                };
+//
+//                summonerAccount.recentGamesCollected = BaseRiotAPI.getMatchList(summoner.getID());
+//                Toast toast = Toast.makeText(getApplicationContext(), summonerAccount.recentGamesCollected.getMatches().size(), Toast.LENGTH_LONG);
+//                                toast.show();
+
 
                 runOnUiThread(new Runnable() {
                     @Override
@@ -172,65 +205,10 @@ public class MainActivity extends AppCompatActivity
                 System.out.println("Couldn't get summoner");
             }
         }, name);
-//                summonerNameTextView = (TextView) findViewById(R.id.nameField);
-//                summonerName = summoner.getName().toString();
-//                summonerID = (int) summoner.getID();
-//                summonerLevel = (int) summoner.getLevel();
-//
-//
-//                final String summonerWords = (summonerName + " is a level " + summonerLevel + " summoner on the NA server. /n He has won");
 
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        summonerNameTextView.setText(summonerWords);
-////                        System.out.println(summonerAccount.getNameCollected());
-////                        gameStatFragment.setNameText(summonerAccount.getNameCollected());
-////                        gameStatFragment.setIDNumber((summonerAccount.getSummonerIDCollected()));
-//                        summonerAccount.setNameCollected(summonerName);
-//                        summonerAccount.setSummonerLevelCollected(summonerLevel);
-//
-//
-//                    }
-//                });
-//
-//        AsyncRiotAPI.getChampions(new Action<List<Champion>>() {
-//            @Override
-//            public void perform(List<Champion> champions) {
-//                championField = (TextView) findViewById(R.id.champTextView);
-//                final String championText = "He enjoys playing LoL on all different champions, like " + champions.get((int) (champions.size() * Math.random())) + ".";
-//
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        championField.setText(championText);
-//                    }
-//                });
-//            }
-//
-//            public void handle(APIException e) {
-//                System.out.println("Couldn't get champion list.");
-//            }
-//        });
-//
-//        AsyncRiotAPI.getChallenger(new Action<League>() {
-//            @Override
-//            public void perform(League challenger) {
-//                Summoner bestNA = challenger.getEntries().get(0).getSummoner();
-//                rankField = (TextView) findViewById(R.id.rankView);
-//                final String rankWords = "He's much better at writing Java code than he is at LoL. He'll never be as good as " + bestNA + ".";
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        rankField.setText(rankWords);
-//                    }
-//                });
-//            }
-//
-//            public void handle(APIException e) {
-//                System.out.println("Couldn't get solo queue challenger league.");
-//            }
-//        }, QueueType.RANKED_SOLO_5x5);
+        button.hide();
+//        ((GameStatFragment)getFragmentManager().findFragmentById(R.id.gameStatFrag)).changeText(summonerAccount.getNameCollected());
+//    gameStatFragment.changeText(summonerAccount.getNameCollected());
     }
 
     public void initMenus(Bundle savedInstanceState)
@@ -244,8 +222,8 @@ public class MainActivity extends AppCompatActivity
 
         initialFragment = InitialFragment.newInstance("param1","param2");
         aboutFragment = AboutFragment.newInstance("param1","param2");
-        contactUsFragment = ContactUsFragment.newInstance("param1","param2");
-        exerciseFragement = ExerciseFragement.newInstance("param1","param2");
+        contactUsFragment = ContactUsFragment.newInstance("param1", "param2");
+        exerciseFragement = ExerciseFragement.newInstance("param1", "param2");
         gameStatFragment = GameStatFragment.newInstance("param1","param2");
 
         fm = getFragmentManager();
@@ -263,6 +241,8 @@ public class MainActivity extends AppCompatActivity
 
         button = (FloatingActionButton) findViewById(R.id.fab);
 
+        localMatchList = new ArrayList<>();
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         navigationView.setNavigationItemSelectedListener(this);
@@ -270,6 +250,9 @@ public class MainActivity extends AppCompatActivity
         AsyncRiotAPI.setMirror(Region.NA);
         AsyncRiotAPI.setRegion(Region.NA);
         AsyncRiotAPI.setAPIKey("f206b7e6-8f2c-4a64-a1bd-79e26953b808");
+        BaseRiotAPI.setMirror(Region.NA);
+        BaseRiotAPI.setRegion(Region.NA);
+        BaseRiotAPI.setAPIKey("f206b7e6-8f2c-4a64-a1bd-79e26953b808");
 
         // add button listener
         button.setOnClickListener(new View.OnClickListener() {
@@ -311,12 +294,9 @@ public class MainActivity extends AppCompatActivity
 
                 // create alert dialog
                 AlertDialog alertDialog = alertDialogBuilder.create();
-
                 // show it
                 alertDialog.show();
-
             }
         });
-
     }
 }

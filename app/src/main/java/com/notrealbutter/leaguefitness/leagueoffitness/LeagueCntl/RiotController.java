@@ -1,4 +1,4 @@
-package com.notrealbutter.leaguefitness.leagueoffitness.LeagueFacingStuff;
+package com.notrealbutter.leaguefitness.leagueoffitness.LeagueCntl;
 
 import com.robrua.orianna.api.core.AsyncRiotAPI;
 import com.robrua.orianna.type.api.Action;

@@ -6,6 +6,9 @@
 
     <string name="action_settings">Settings</string>
 
+    <string name="welcometoapp">Welcome to the League of Fitness!</string>
+    <string name="gettingStarted">To Load your Account, press the floating button Below</string>
+
     <string name="home">Home</string>
     <string name="gamestat">Game Stats</string>
     <string name="exercise">Exercise</string>

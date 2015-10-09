@@ -1,19 +1,19 @@
-package com.notrealbutter.leaguefitness.leagueoffitness.LeagueFacingStuff;
+package com.notrealbutter.leaguefitness.leagueoffitness.LeagueCntl;
 
-import com.robrua.orianna.type.core.matchlist.MatchReference;
+import com.robrua.orianna.type.dto.matchlist.MatchList;
 
-import java.util.List;
 public class SummonerAccount {
     private String nameCollected;
     private int summonerIDCollected;
     private int summonerLevelCollected;
-    private List<MatchReference> recentGamesCollected = null;
+    public MatchList recentGamesCollected = null;
 
-    public SummonerAccount() {
+    public SummonerAccount()
+    {
         nameCollected = "none";
         summonerIDCollected = 0;
         summonerLevelCollected = 0;
-        List<MatchReference> recentGamesCollected = null;
+        recentGamesCollected = new MatchList();
     }
 
     public String getSummonerName() {
@@ -36,11 +36,11 @@ public class SummonerAccount {
         this.summonerIDCollected = summonerIDCollected;
     }
 
-    public List<MatchReference> getRecentGamesCollected() {
+    public MatchList getRecentGamesCollected() {
         return recentGamesCollected;
     }
 
-    public void setRecentGamesCollected(List<MatchReference> recentGamesCollected) {
+    public void setRecentGamesCollected(MatchList recentGamesCollected) {
         this.recentGamesCollected = recentGamesCollected;
     }
 
