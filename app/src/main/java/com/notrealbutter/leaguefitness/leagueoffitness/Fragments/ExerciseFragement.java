@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.notrealbutter.leaguefitness.leagueoffitness.ExerciseCntl.ExerciseStat;
 import com.notrealbutter.leaguefitness.leagueoffitness.LeagueCntl.SummonerAccount;
@@ -15,12 +16,11 @@ public class ExerciseFragement extends Fragment {
     SummonerAccount summonerAccount;
     ExerciseStat exerciseStat;
 
-    private String mParam1;
-    private String mParam2;
+    TextView exerciseInitiation, crunchBox,pushUpBox,burpeeView,runDurationBox;
 
     private OnFragmentInteractionListener mListener;
 
-    public static ExerciseFragement newInstance(String param1, String param2) {
+    public static ExerciseFragement newInstance() {
         ExerciseFragement fragment = new ExerciseFragement();
         Bundle args = new Bundle();
         fragment.setArguments(args);
@@ -38,7 +38,14 @@ public class ExerciseFragement extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_exercise_fragement, container, false);
+        View view = inflater.inflate(R.layout.fragment_exercise_fragement, container, false);
+
+        exerciseInitiation = (TextView) view.findViewById(R.id.exerciseInitiation);
+        crunchBox = (TextView) view.findViewById(R.id.crunchBox);
+        pushUpBox = (TextView) view.findViewById(R.id.pushUpBox);
+        burpeeView = (TextView) view.findViewById(R.id.burpeeView);
+        runDurationBox = (TextView) view.findViewById(R.id.runDurationBox);
+updateView();        return view;
     }
 
     public void onButtonPressed(Uri uri) {
@@ -54,7 +61,7 @@ public class ExerciseFragement extends Fragment {
     }
 
     public interface OnFragmentInteractionListener {
-        public void onFragmentInteraction(Uri uri);
+         void onFragmentInteraction(Uri uri);
     }
 
     public void setSummonerAccount(SummonerAccount acct){
@@ -65,7 +72,21 @@ public class ExerciseFragement extends Fragment {
         exerciseStat = stat;
     }
 
+    public void initView(){
+        exerciseInitiation.setText(R.string.exerciseInitiator);
+        crunchBox.setText("");
+        pushUpBox.setText("");
+        burpeeView.setText("");
+        runDurationBox.setText("");
+    }
+
     public void updateView(){
+            exerciseInitiation.setText("");
+            exerciseStat.setUpExercise();
+            crunchBox.setText("Recommended Number of Crunches: " + exerciseStat.getCrunches());
+            pushUpBox.setText("Recommended Number of Push Ups: " + exerciseStat.getPushUps());
+            burpeeView.setText("Recommended Number of Burpees: " + exerciseStat.getBurpees());
+            runDurationBox.setText("Recommended duration of Run: " + exerciseStat.getRunDuration() + "minutes");
 
     }
 }

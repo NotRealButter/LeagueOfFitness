@@ -21,13 +21,27 @@ public class ExerciseStat {
         assistCount = ac;
         creepScore = cs;
         gameDuration = gd;
+
+        setUpExercise();
+    }
+
+    public void temporaryPresentationPrep()
+    {
+        setKillCount((int)(Math.random()*7));
+        setDeathCount((int) (Math.random() * 9));
+        setAssistCount((int) (Math.random() * 19));
+        setCreepScore((int) (Math.random() * 275));
+        setGameDuration((int) (30 + (Math.random() * 40)));
     }
 
     public void setUpExercise(){
+        temporaryPresentationPrep();
+
         setPushUps(getKillCount() * 5 + getAssistCount());
         setBurpees(getDeathCount() * 5);
         setCrunches(getCreepScore() /10);
         setRunDuration(getGameDuration());
+
     }
 
 
@@ -102,12 +116,5 @@ public class ExerciseStat {
     public void setRunDuration(int runDuration) {
         this.runDuration = runDuration;
     }
-    public void initialize() {
 
-
-        setPushUps(getKillCount() * 5 + getAssistCount());
-        setBurpees(getDeathCount() * 5);
-        setCrunches(getCreepScore() / 10);
-        setRunDuration(getGameDuration());
-    }
 }

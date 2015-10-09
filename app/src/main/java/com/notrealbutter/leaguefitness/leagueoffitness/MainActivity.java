@@ -39,7 +39,6 @@ import com.robrua.orianna.type.core.summoner.Summoner;
 import com.robrua.orianna.type.exception.APIException;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
@@ -162,7 +161,6 @@ public class MainActivity extends AppCompatActivity
         AsyncRiotAPI.getSummonerByName(new Action<Summoner>() {
             @Override
             public void perform(final Summoner summoner) {
-                Date now = new Date(System.currentTimeMillis());
                 summonerAccount.setNameCollected(summoner.getName());
                 summonerAccount.setSummonerIDCollected((int) summoner.getID());
                 summonerAccount.setSummonerLevelCollected((int) summoner.getLevel());
@@ -208,10 +206,13 @@ public class MainActivity extends AppCompatActivity
             }
         }, name);
 
-        temporaryPresentationPrep();
         gameStatFragment.setSummonerAccount(summonerAccount);
         exerciseFragement.setSummonerAccount(summonerAccount);
         exerciseFragement.setExerciseStat(exerciseStat);
+
+//        summonerAccount.temporaryPresentationPrep();
+        exerciseStat.setUpExercise();
+
         gameStatFragment.updateView();
         exerciseFragement.updateView();
 
@@ -229,13 +230,15 @@ public class MainActivity extends AppCompatActivity
         summonerAccount = new SummonerAccount();
         exerciseStat = new ExerciseStat(summonerAccount.getKillCount(),summonerAccount.getDeathCount(),summonerAccount.getAssistCount(),summonerAccount.getCreepScore(),summonerAccount.getGameDuration());
 
-        initialFragment = InitialFragment.newInstance("param1","param2");
-        aboutFragment = AboutFragment.newInstance("param1","param2");
-        contactUsFragment = ContactUsFragment.newInstance("param1", "param2");
-        exerciseFragement = ExerciseFragement.newInstance("param1", "param2");
-        gameStatFragment = GameStatFragment.newInstance("param1","param2");
+        initialFragment = InitialFragment.newInstance();
+        aboutFragment = AboutFragment.newInstance();
+        contactUsFragment = ContactUsFragment.newInstance();
+        exerciseFragement = ExerciseFragement.newInstance();
+        gameStatFragment = GameStatFragment.newInstance();
 
         gameStatFragment.setSummonerAccount(summonerAccount);
+        exerciseFragement.setSummonerAccount(summonerAccount);
+        exerciseFragement.setExerciseStat(exerciseStat);
 
         fm = getFragmentManager();
 
@@ -306,16 +309,11 @@ public class MainActivity extends AppCompatActivity
                 // create alert dialog
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 // show it
+                fm.beginTransaction().replace(R.id.container, exerciseFragement, "title_section_1").commit();
+                fm.beginTransaction().replace(R.id.container, gameStatFragment, "title_section_1").commit();
                 alertDialog.show();
             }
         });
     }
-    public void temporaryPresentationPrep()
-    {
-        summonerAccount.setKillCount((int)(Math.random()*7));
-        summonerAccount.setDeathCount((int) (Math.random() * 9));
-        summonerAccount.setAssistCount((int) (Math.random() * 19));
-        summonerAccount.setCreepScore((int) (Math.random() * 275));
-        summonerAccount.setGameDuration((int)(Math.random()*40));
-    }
+
 }

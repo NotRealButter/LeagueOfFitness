@@ -97,6 +97,8 @@ public class SummonerAccount {
     public void setGameDuration(int gameDuration) {
         this.gameDuration = gameDuration;
     }
+
+
 }
 
 

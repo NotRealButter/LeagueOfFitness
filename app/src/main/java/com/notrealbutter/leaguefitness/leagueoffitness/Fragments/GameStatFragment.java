@@ -12,12 +12,6 @@ import com.notrealbutter.leaguefitness.leagueoffitness.LeagueCntl.SummonerAccoun
 import com.notrealbutter.leaguefitness.leagueoffitness.R;
 
 public class GameStatFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-
-    // TODO: Rename and change types of parameters
-
     private OnFragmentInteractionListener mListener;
 
     public TextView summonerNameGS;
@@ -25,7 +19,7 @@ public class GameStatFragment extends Fragment {
     public TextView summonerIDGS;
     public SummonerAccount summonerAccount;
 
-    public static GameStatFragment newInstance(String param1, String param2) {
+    public static GameStatFragment newInstance() {
         GameStatFragment fragment = new GameStatFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
@@ -74,7 +68,7 @@ public class GameStatFragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(Uri uri);
     }
 
     public void setSummonerAccount(SummonerAccount acct){
