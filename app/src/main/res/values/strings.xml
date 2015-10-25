@@ -32,4 +32,5 @@
     <string name="exerciseLogo">Exercise</string>
     <string name="gameStatLogo">Game Stats</string>
     <string name="exerciseInitiator">If you have not already imported your Summoner, please do that first. Importing your Summoner will populate this area with your exercise regimen</string>
+    <string name="title_activity_load_summoner">LoadSummonerActivity</string>
 </resources>
